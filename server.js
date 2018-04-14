@@ -19,13 +19,19 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    title: "Viktor Protsenko" // insert your name instead
+  });
 });
 app.get("/my-cv", (req, res) => {
-  res.render("my-cv");
+  res.render("my-cv", {
+    title: "E-mail Me" // insert your name instead
+  });
 });
 app.get("/admin", (req, res) => {
-  res.render("admin");
+  res.render("admin", {
+    title: "Admin Page"
+  });
 });
 app.get("/contact", (req, res) => {
   res.render("contact");
