@@ -12,15 +12,21 @@ app.use(express.static("public", {'extensions': ['html']}));
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server is listening on port 3000. Ready to accept requests!");
 });
-app.get("/contact-information",function(err,res){
-  res.send("welcome to contact me page");
+// app.get("/contact-information",function(err,res){
+//   res.send("welcome to contact me page");
   
-})
+// })
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const extraDataForTheTemplate = {
+    title: "Mahsa Profile",
+    sig: "signame"
+  }
+  res.render("index", 
+    extraDataForTheTemplate
+  );
 });
 app.get("/my-cv", (req, res) => {
   res.render("my-cv");
@@ -28,3 +34,7 @@ app.get("/my-cv", (req, res) => {
 app.get("/admin", (req, res) => {
   res.render("admin");
 });
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
