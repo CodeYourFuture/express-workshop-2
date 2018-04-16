@@ -3,15 +3,8 @@ const express = require("express");
 const app = express();
 const fs=require('fs');
 
-
-
-
-
-
 // The extensions 'html' allows us to serve file without adding .html at the end 
 // i.e /my-cv will server /my-cv.html
-
-
 
 // what does this line mean: process.env.PORT || 3000
 app.listen(process.env.PORT || 3000, function () {
@@ -41,3 +34,18 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 app.use(express.static("public", {'extensions': ['html']}));
+app.get("/", (req, res) => {
+  const filePath = __dirname + "/data/posts.json";
+  const callbackFunction = (error, file) => {
+    // we call .toString() to turn the file buffer to a String
+    const fileData = file.toString();
+    // we use JSON.parse to get an object out the String
+    const postsJson = JSON.parse(fileData);
+    // send the json to the Template to render
+    res.render("index", {
+      title: "Etzali Profile", // insert your name instead
+      posts: postsJson
+    });
+  };
+  fs.readFile(filePath, callbackFunction);
+});
