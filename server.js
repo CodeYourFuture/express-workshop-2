@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
     const postsJson = JSON.parse(fileData);
     // send the json to the Template to render
     res.render("index", {
-      title: "Etzali Profile", // insert your name instead
+      title: "Mahsa Profile", // insert your name instead
       posts: postsJson
     });
   };
@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
 });
 
 //posts.json as an API
-app.get("/api/get-posts",(req,res)=> {
+app.get("/api/posts",(req,res)=> {
   const filePath = __dirname + "/data/posts.json";
   res.sendFile(filePath);
 
