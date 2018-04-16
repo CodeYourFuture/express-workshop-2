@@ -3,8 +3,8 @@ function loadRepos(userName) {
         const reposInfo = JSON.parse(this.responseText);
 
         let html = '<div class="row">';
-        reposInfo.forEach(function(repo) {
-            const description = repo.description ? repo.description.substring(0, 50) : "No Description";
+        const repoFunc = repo =>
+            {const description = repo.description ? repo.description.substring(0, 50) : "No Description";
 
             html += `<div class="col-sm-6 col-md-4">
                 <div class="thumbnail repo-info">
@@ -19,7 +19,8 @@ function loadRepos(userName) {
                 </div>
                 </div>
             </div>`;
-        });
+            }
+        reposInfo.forEach(repoFunc);
         html += '</div>';
 
         const reposInfoElement = document.getElementById('reposInfo');
