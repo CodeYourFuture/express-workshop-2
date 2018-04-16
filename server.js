@@ -14,12 +14,12 @@ app.listen(process.env.PORT || 3000, function () {
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Viktor Protsenko",     // insert your name instead
-    subtitle: "Junior Wed developer"
-  });
-});
+// app.get("/", (req, res) => {
+//   res.render("index", {
+//     title: "Viktor Protsenko",     // insert your name instead
+//     subtitle: "Junior Wed developer"
+//   });
+// });
 app.get("/my-cv", (req, res) => {
   res.render("my-cv", {
     title: "E-mail Me" // insert your name instead
@@ -34,6 +34,7 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 app.use(express.static("public", {'extensions': ['html']}));
+
 app.get("/", (req, res) => {
   const filePath = __dirname + "/data/posts.json";
   const callbackFunction = (error, file) => {
