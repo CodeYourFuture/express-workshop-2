@@ -20,7 +20,8 @@ app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
   res.render("index", {
-    title: "Viktor Protsenko" // insert your name instead
+    title: "Viktor Protsenko",     // insert your name instead
+    subtitle: "Junior Wed developer"
   });
 });
 app.get("/my-cv", (req, res) => {
