@@ -50,3 +50,10 @@ app.get("/", (req, res) => {
   };
   fs.readFile(filePath, callbackFunction);
 });
+
+//posts.json as an API
+app.get("/api/get-posts",(req,res)=> {
+  const filePath = __dirname + "/data/posts.json";
+  res.sendFile(filePath);
+
+})
