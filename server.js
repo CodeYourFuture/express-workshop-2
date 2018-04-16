@@ -57,3 +57,6 @@ app.get("/api/posts",(req,res)=> {
   res.sendFile(filePath);
 
 })
+app.get('/posts/:postId', function (req, res) {
+  res.send('post id: ' + req.params.postId);
+});
