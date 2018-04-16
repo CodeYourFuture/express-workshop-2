@@ -29,7 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-      <script src="./js/github-client.js"></script>
+
 </head>
 
 <body>
@@ -61,14 +61,11 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            {{{title}}}
-            {{{body}}}
-            {{{sig}}}
+            {{{title}}} {{{body}}} {{{sig}}}
         </div>
     </div>
 
-    <hr>
-{{#each posts}}
+    <hr> {{#each posts}}
     <div class="post-preview">
         <a href="post.html">
             <h2 class="post-title">
@@ -82,7 +79,7 @@
             </h4>
         </a>
     </div>
-{{/each}}
+    {{/each}}
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -132,7 +129,8 @@
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
-
+    <!-- CV JavaScript -->
+    <script src="./js/github-client.js"></script>
 
 
 </body>
