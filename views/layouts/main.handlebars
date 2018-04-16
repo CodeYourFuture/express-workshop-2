@@ -29,7 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+      <script src="./js/github-client.js"></script>
 </head>
 
 <body>
@@ -61,12 +61,28 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
+            {{{title}}}
             {{{body}}}
+            {{{sig}}}
         </div>
     </div>
 
     <hr>
-
+{{#each posts}}
+    <div class="post-preview">
+        <a href="post.html">
+            <h2 class="post-title">
+                {{this.title}}
+            </h2>
+            <h3 class="post-subtitle">
+                {{this.summary}}
+            </h3>
+            <h4>
+                {{this.content}}
+            </h4>
+        </a>
+    </div>
+{{/each}}
     <!-- Footer -->
     <footer>
         <div class="container">
