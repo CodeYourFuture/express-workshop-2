@@ -1,8 +1,10 @@
 const exphbs = require("express-handlebars");
 const express = require("express");
 const app = express();
-const fs=require('fs');
+const fs = require('fs');
+const bodyParser = require("body-parser");
 const filePath = __dirname + "/data/posts.json";
+const savePost = require('./helpers/savePost');
 
 // The extensions 'html' allows us to serve file without adding .html at the end 
 // i.e /my-cv will server /my-cv.html
@@ -12,9 +14,10 @@ const filePath = __dirname + "/data/posts.json";
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    const callbackFunction = (error, file) => {
+  const callbackFunction = (error, file) => {
     // we call .toString() to turn the file buffer to a String
     const fileData = file.toString();
     // we use JSON.parse to get an object out the String
@@ -41,11 +44,15 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-//posts.json as an API
-app.get("/api/posts",(req,res)=> {
-    res.sendFile(filePath);
+app.get("/posts", (req, res) => {
+  res.sendFile(filePath);
+});
 
-})
+// app.get('/posts/:postId', function (req, res) {
+//   res.send('post id: ' + req.params.postId);
+// });
+
+
 app.get('/posts/:postId', function (req, res) {
   // const callbackFunction = (error, file) => {
   // const fileData = file.toString();
@@ -61,3 +68,4 @@ app.get('/posts/:postId', function (req, res) {
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server is listening on port 3000. Ready to accept requests!");
 });
+
