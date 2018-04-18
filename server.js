@@ -5,11 +5,10 @@ const fs = require('fs');
 const bodyParser = require("body-parser");
 const filePath = __dirname + "/data/posts.json";
 const savePost = require('./helpers/savePost');
+const readPosts = require('./helpers/readPosts');
 
 // The extensions 'html' allows us to serve file without adding .html at the end 
 // i.e /my-cv will server /my-cv.html
-
-// what does this line mean: process.env.PORT || 3000
 
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -48,24 +47,45 @@ app.get("/posts", (req, res) => {
   res.sendFile(filePath);
 });
 
-// app.get('/posts/:postId', function (req, res) {
-//   res.send('post id: ' + req.params.postId);
+//get the post ID from the request 
+ //search in your saved posts for the post that matches your ID 
+  //read the post data 
+   //send the post data back
+app.get("/posts/:postId", (req, res) => {
+  fs.readFile(filePath, (err, data) => {
+    if (err) throw err;
+    var postsJson = JSON.parse(data);
+    console.log(postsJson[0].id);
+    var pid=req.params.postId;
+  console.log(pid,"piiiiiiiiiid")
+  postsJson.forEach(element => {
+    if(element.id === pid)
+     res.send(element)
+  });
+  });
+})
+//   readPosts(filePath);
+//   let oldPost = {
+//     id: req.params.postId,
+//     title: req.body.title,
+//     summary: req.params.summary,
+//     content: req.body.content
+//   };
+  
+//   res.send(oldPost);
+//   res.redirect("/admin");
 // });
 
-
-app.get('/posts/:postId', function (req, res) {
-  // const callbackFunction = (error, file) => {
-  // const fileData = file.toString();
-  //   // we use JSON.parse to get an object out the String
-  //   const postsJson = JSON.parse(fileData);
-  //   // send the json to the Template to render
-  // fs.readFile(filePath, callbackFunction);
-  res.send('post id: ' + req.params.postId);
-  // }
-})
-
+app.post("/posts", (req, res) => {
+  let newPost = {
+    title: req.body.title,
+    summary: req.body.summary,
+    content: req.body.contents
+  };
+  savePost(newPost);
+  res.redirect("/admin");
+});
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server is listening on port 3000. Ready to accept requests!");
 });
-

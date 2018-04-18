@@ -29,7 +29,7 @@ const savePost = (newPost, callback) => {
                 console.error(error);
                 return callback(error);
             };
-            // callback(error);
+             //callback(error);
         });
     });
 };

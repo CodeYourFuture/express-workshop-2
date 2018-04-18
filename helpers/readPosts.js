@@ -24,7 +24,7 @@ const readPosts = (callback) => {
         const posts = JSON.parse(file);
 
         // return the object to the callback
-        callback(error, posts);
+        //callback(error, posts);
     });
 }
 
