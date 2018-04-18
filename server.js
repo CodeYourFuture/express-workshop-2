@@ -47,8 +47,16 @@ app.get("/api/posts",(req,res)=> {
 
 })
 app.get('/posts/:postId', function (req, res) {
+  // const callbackFunction = (error, file) => {
+  // const fileData = file.toString();
+  //   // we use JSON.parse to get an object out the String
+  //   const postsJson = JSON.parse(fileData);
+  //   // send the json to the Template to render
+  // fs.readFile(filePath, callbackFunction);
   res.send('post id: ' + req.params.postId);
-});
+  // }
+})
+
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("Server is listening on port 3000. Ready to accept requests!");
