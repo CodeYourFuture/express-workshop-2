@@ -48,33 +48,22 @@ app.get("/posts", (req, res) => {
 });
 
 //get the post ID from the request 
- //search in your saved posts for the post that matches your ID 
-  //read the post data 
-   //send the post data back
+//search in your saved posts for the post that matches your ID 
+//read the post data 
+//send the post data back
 app.get("/posts/:postId", (req, res) => {
   fs.readFile(filePath, (err, data) => {
     if (err) throw err;
-    var postsJson = JSON.parse(data);
+    let postsJson = JSON.parse(data);
     console.log(postsJson[0].id);
-    var pid=req.params.postId;
-  console.log(pid,"piiiiiiiiiid")
-  postsJson.forEach(element => {
-    if(element.id === pid)
-     res.send(element)
+    let pid = req.params.postId;
+    console.log(pid, "piiiiiiiiiid")
+    postsJson.forEach(element => {
+      if (element.id === pid)
+        res.send(element)
+    });
   });
-  });
-})
-//   readPosts(filePath);
-//   let oldPost = {
-//     id: req.params.postId,
-//     title: req.body.title,
-//     summary: req.params.summary,
-//     content: req.body.content
-//   };
-  
-//   res.send(oldPost);
-//   res.redirect("/admin");
-// });
+});
 
 app.post("/posts", (req, res) => {
   let newPost = {
