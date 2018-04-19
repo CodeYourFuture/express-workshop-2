@@ -13,7 +13,8 @@ const readPosts = require('./helpers/readPosts');
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   const callbackFunction = (error, file) => {
@@ -67,10 +68,11 @@ app.get("/posts/:postId", (req, res) => {
 
 app.post("/posts", (req, res) => {
   let newPost = {
-    title: req.body.title,
-    summary: req.body.summary,
-    content: req.body.contents
+    title: req.body.param1,
+    summary: req.body.param2,
+    content: req.body.param3
   };
+  console.log(newPost);
   savePost(newPost);
   res.redirect("/admin");
 });
