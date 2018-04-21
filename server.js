@@ -74,7 +74,8 @@ app.post("/posts", (req, res) => {
   };
   console.log(newPost);
   savePost(newPost);
-  res.redirect("/admin");
+  res.redirect("/posts");
+ 
 });
 
 app.listen(process.env.PORT || 3000, function () {
