@@ -68,9 +68,9 @@ app.get("/posts/:postId", (req, res) => {
 
 app.post("/posts", (req, res) => {
   let newPost = {
-    title: req.body.param1,
-    summary: req.body.param2,
-    content: req.body.param3
+    title: req.body.title,
+    summary: req.body.summary,
+    content: req.body.content
   };
   console.log(newPost);
   savePost(newPost);

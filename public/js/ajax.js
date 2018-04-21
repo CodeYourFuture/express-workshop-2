@@ -2,10 +2,22 @@
 var ajaxForm = document.getElementById("contactForm")
 ajaxForm.addEventListener("submit", function(e){
     e.preventDefault();
+    console.log(e);
     var form = e.target;
     console.log(form);
-    var data = new FormData(ajaxForm);
-    data.append("title","name")
+
+    //var data = new FormData(ajaxForm);
+    var data= new Object();
+    let title1=document.querySelector("#title").value
+    let summary1=document.querySelector("#summary").value
+    let content1=document.querySelector("#contents").value
+    console.log(title1,"titleee");
+    data.title = title1;
+    data.summary=summary1;
+    data.content=content1;
+    console.log(data);
+    
+    
     var xhr = new XMLHttpRequest();
     // var data = {
     //     param1: 'value1',
@@ -19,5 +31,6 @@ ajaxForm.addEventListener("submit", function(e){
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(data));
+    console.log(JSON.stringify(data));
     })
    
