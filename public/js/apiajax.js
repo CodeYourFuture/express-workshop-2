@@ -1,38 +1,26 @@
 var apiurl = "http://quotesondesign.com/wp-json/posts";
-var apiButton=document.querySelector("btn btn-success");
-console.log(apiButton);
+var apiButton=document.querySelector("a.btn.btn-success");
+console.log(apiButton); //shows button
 
-ajaxForm.addEventListener("submit", function(e){
+apiButton.addEventListener("click", function(e){
     e.preventDefault();
     console.log(e);
-    var form = e.target;
-    console.log(form);
-
-    //var data = new FormData(ajaxForm);
-    var data= new Object();
-    let title1=document.querySelector("#title").value
-    let summary1=document.querySelector("#summary").value
-    let content1=document.querySelector("#contents").value
-    console.log(title1,"titleee");
-    data.title = title1;
-    data.summary=summary1;
-    data.content=content1;
-    console.log(data);
-    
+    var button = e.target;
+    console.log(button);
     
     var xhr = new XMLHttpRequest();
-    // var data = {
-    //     param1: 'value1',
-    //     param2: 'value2',
-    //     param3: 'value3'
-    // };
-    console.log(data);
-    xhr.open('POST', '/posts');
-    xhr.onload = function(data) {
-        //console.log('loaded', this.responseText);
+    xhr.open('GET', apiurl);
+    xhr.onload = function(xhr) {
+        console.log('loaded', this.responseText);
+        reconstruct(this.responseText)
     };
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(data));
-    console.log(JSON.stringify(data));
+    console.log(xhr.responseText)
+    xhr.send("sasas");
     })
-   
+   function reconstruct(arg){
+       var divPosts = document.createElement("div");
+        var posts= JSON.parse(arg);
+        
+        console.log(posts);
+   }
