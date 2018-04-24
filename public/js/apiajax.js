@@ -1,26 +1,34 @@
 var apiurl = "http://quotesondesign.com/wp-json/posts";
-var apiButton=document.querySelector("a.btn.btn-success");
+var apiButton = document.querySelector("a.btn.btn-success");
 console.log(apiButton); //shows button
 
-apiButton.addEventListener("click", function(e){
+apiButton.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log(e);
-    var button = e.target;
-    console.log(button);
-    
     var xhr = new XMLHttpRequest();
     xhr.open('GET', apiurl);
-    xhr.onload = function(xhr) {
-        console.log('loaded', this.responseText);
+    xhr.onload = function (xhr) {
+        let html = '<div class="post-preview">'
         reconstruct(this.responseText)
     };
+
     xhr.setRequestHeader('Content-Type', 'application/json');
     console.log(xhr.responseText)
-    xhr.send("sasas");
-    })
-   function reconstruct(arg){
-       var divPosts = document.createElement("div");
-        var posts= JSON.parse(arg);
-        
-        console.log(posts);
-   }
+    xhr.send();
+})
+function reconstruct(arg) {
+    let postInfo = this.responseText
+    let posts = post => {
+        html += `<a href="post.html">
+                <h2 class="post-title">${post.title}
+                </h2>
+        <h3 class= "post-subtitle">${post.content}
+        </h3>
+        </a>
+            <p class="post-meta"> Posted by ${post.link}
+                <a href="#"> </a>on july 8,2018 </p>`;
+    }
+    postInfo.forEach(posts);
+    html += '</div>';
+    const postInfoElement = document.getElementById('postInfo');
+    postInfoElement.innerHTML = html;
+}
