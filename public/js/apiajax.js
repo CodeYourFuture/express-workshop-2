@@ -1,4 +1,4 @@
-var apiurl = "https://portfoliocyf.herokuapp.com/posts";
+var apiurl = "https://blooming-spire-76019.herokuapp.com/posts";
 var apiButton = document.querySelector("a.btn.btn-success");
 
 apiButton.addEventListener("click", function (e) {
@@ -10,10 +10,10 @@ apiButton.addEventListener("click", function (e) {
         let postInfo = JSON.parse(this.responseText);
         let posts = post => {
             html += `<a href="post.html">
-                <h2 class="post-id">${post.id}</h2>
                 <h2 class="post-title">${post.title}</h2>
-                <h3 class="post-summary">${post.summary}</h3>
-                <h3 class="post-content">${post.content}</h3>`;
+                <h3 class="post-subtitle">${post.summary}</h3>
+                <p class="post-meta">${post.content}</p>
+                <hr>`
         }
         postInfo.forEach(posts);
         html += '</div>';

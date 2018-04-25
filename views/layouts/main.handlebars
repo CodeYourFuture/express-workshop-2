@@ -61,12 +61,12 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            {{{title}}} {{{body}}} {{{sig}}}
+            {{{title}}} {{{body}}}
         </div>
     </div>
 
     <hr> {{#each posts}}
-    <div class="post-preview">
+    <div class="post-preview col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <a href="post.html">
             <h2 class="post-title">
                 {{this.id}}
@@ -76,10 +76,11 @@
             <h3 class="post-subtitle">
                 {{this.summary}}
             </h3>
-            <h4>
+            <p class='post-meta'>
                 {{this.content}}
-            </h4>
+            </p>
         </a>
+        <hr>
     </div>
     {{/each}}
     <!-- Footer -->
