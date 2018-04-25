@@ -2,9 +2,9 @@
 var ajaxForm = document.getElementById("contactForm")
 ajaxForm.addEventListener("submit", function(e){
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
     var form = e.target;
-    console.log(form);
+    // console.log(form);
 
     //var data = new FormData(ajaxForm);
     var data= new Object();

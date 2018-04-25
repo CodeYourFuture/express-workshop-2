@@ -67,15 +67,21 @@ app.get("/posts/:postId", (req, res) => {
 });
 
 app.post("/posts", (req, res) => {
-  let newPost = {
-    title: req.body.title,
-    summary: req.body.summary,
-    content: req.body.content
-  };
-  console.log(newPost);
-  savePost(newPost);
-  res.redirect("/posts");
- 
+  fs.readFile(filePath, (err, data) => {
+    if (err) throw err;
+    let postsJson = JSON.parse(data);
+    let pid = parseInt(postsJson[0].id) + 1;
+    console.log(typeof pid)
+    let newPost = {
+      id: pid,
+      title: req.body.title,
+      summary: req.body.summary,
+      content: req.body.content
+    };
+    console.log(newPost);
+    savePost(newPost);
+    res.redirect("/posts");
+  });
 });
 
 app.listen(process.env.PORT || 3000, function () {
