@@ -28,8 +28,8 @@ const savePost = (newPost, callback) => {
                 console.error('error writing to the file');
                 console.error(error);
                 return callback(error);
-            } 
-            callback();
+            };
+             //callback(error);
         });
     });
 };
