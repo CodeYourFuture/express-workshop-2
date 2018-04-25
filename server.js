@@ -6,7 +6,9 @@ const bodyParser = require("body-parser");
 const filePath = __dirname + "/data/posts.json";
 const savePost = require('./helpers/savePost');
 const readPosts = require('./helpers/readPosts');
+const cors = require('cors');
 
+app.use(cors({origin: '*'}));
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
