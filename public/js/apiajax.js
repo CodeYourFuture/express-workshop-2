@@ -25,7 +25,7 @@ function reconstruct(arg) {
         </h3>
         </a>
             <p class="post-meta"> Posted by ${post.link}
-                <a href="#"> </a>on july 8,2018 </p>`;
+                <a href="#"> </a> on july 8,2018 </p>`;
     }
     postInfo.forEach(posts);
     html += '</div>';
