@@ -35,11 +35,16 @@ app.get("/admin", function(req, res) {
     age: 25
   });
 });
+app.get("/index/:postId", function(req, res) {
+  res.render(posts.find(post.postId === req.params.postId));
+});
+
 app.get("/contact", function(req, res) {
   res.render("contact", { name: "Awet Fessha", age: 25 });
 });
+
 app.use(express.static("public", { extensions: ["html"] }));
-// what does this line mean: process.env.PORT || 3000
+// what does this line mean: process.env.PORT || 3001
 app.listen(process.env.PORT || 3001, function() {
   console.log("Server is listening on port 3001. Ready to accept requests!");
 });
