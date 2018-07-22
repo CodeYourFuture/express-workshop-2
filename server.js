@@ -6,17 +6,39 @@ const app = express();
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// The extensions 'html' allows us to serve file without adding .html at the end
-// i.e /my-cv will server /my-cv.html
-app.use(express.static("public", { extensions: ["html"] }));
-
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    author: true,
+    title: "Index",
+    subtitle: "Index s"
+  });
 });
 
-app.get("/contact", function(req, res) {
-  res.send("Hello contact");
+app.get("/my-cv", (req, res) => {
+  res.render("my-cv", {
+    author: true,
+    title: "My CV",
+    subtitle: "My CV s"
+  });
 });
+
+app.get("/admin", (req, res) => {
+  res.render("admin", {
+    author: true,
+    title: "Admin",
+    subtitle: "Admin s"
+  });
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact", {
+    author: true,
+    title: "Contact",
+    subtitle: "Contact s"
+  });
+});
+
+app.use(express.static("public", { extensions: ["html"] }));
 
 // what does this line mean: process.env.PORT || 3000
 app.listen(process.env.PORT || 3000, function() {
