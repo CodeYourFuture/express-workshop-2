@@ -1,3 +1,4 @@
+const fs = require('fs')
 const express = require("express");
 
 // Add this to the top of your file
@@ -9,9 +10,19 @@ app.set("view engine", "handlebars");
 // The extensions 'html' allows us to serve file without adding .html at the end 
 // i.e /my-cv will server /my-cv.html
 app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Raj profile" // insert your name instead
-  });
+  const filePath = __dirname + "/data/posts.json";
+  const callbackFunction = (error, file) => {
+    // we call .toString() to turn the file buffer to a String
+    const fileData = file.toString();
+    // we use JSON.parse to get an object out the String
+    const postsJson = JSON.parse(fileData);
+    // send the json to the Template to render
+    res.render("index", {
+      title: "Raj Profile", // insert your name instead
+      posts: postsJson
+    });
+  };
+  fs.readFile(filePath, callbackFunction);
 });
 
 app.get("/admin", (req, res) => {
