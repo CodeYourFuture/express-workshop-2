@@ -10,8 +10,9 @@ app.use(express.static("public", { extensions: ["html"] }));
 
 app.get("/", (req, res) => {
   res.render("index", {
-    //title: "Seraphine Profile",
-    subheading: "I am girl learning Node.js" // insert your name instead
+    title: "Seraphine Profile",
+    subheading: "I am girl learning Node.js",
+    backgroundImage: "url here" // insert your name instead
   });
 });
 
