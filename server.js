@@ -12,7 +12,7 @@ app.set("view engine", "handlebars");
 app.use(express.static("public", { 'extensions': ['html'] }));
 app.get("/", (req, res) => {
   res.render("index", {
-
+    title: "Behnaz",
     subheading: "look carefully!"
   });
 });
