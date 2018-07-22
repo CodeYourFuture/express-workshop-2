@@ -5,10 +5,7 @@ const exphbs = require("express-handlebars");
 const app = express();
 // Then these two lines after you initialise your express app
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-// exphbs.registerPartial(__dirname + "/views/partials");
-// registerPartial("myPartial", "{{name}}");
 app.set("view engine", "handlebars");
-
 // The extensions 'html' allows us to serve file without adding .html at the end 
 // i.e /my-cv will server /my-cv.html
 app.get("/", (req, res) => {
@@ -18,13 +15,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-  res.render("admin");
+  res.render("admin", {title: "Welcome to Admin"});
 });
 app.get("/my-cv", (req, res) => {
-  res.render("my-cv");
+  res.render("my-cv", { title: "Repos List From Github" });
 });
 app.get("/contact", (req, res) => {
-  res.render("contact");
+  res.render("contact", {title: "Welcome to Contact"});
 });
 app.use(express.static("public", { 'extensions': ['html'] }));
 // what does this line mean: process.env.PORT || 3000
