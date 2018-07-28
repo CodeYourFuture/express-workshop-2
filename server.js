@@ -36,13 +36,12 @@ app.get("/contact", (req, res) => {
   res.render("contact", {title: "xxxxxWelcome to Contact"});
 });
 app.get("/posts", (req, res) => {
-  res.render("post")
-  // res.sendFile(filePath);
+  res.sendFile(filePath);
 });
 app.get("/posts/:id", (req, res) => {
   if (postsJson ){
     let postJson = postsJson.filter(post => post.postid == req.params.id)
-    res.render("post", { layout: "main", post: postJson[0] })
+    res.render("post", { post: postJson[0] })
   }
 });
 app.use(express.static("public", { 'extensions': ['html'] }));
