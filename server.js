@@ -36,15 +36,14 @@ app.get("/contact", (req, res) => {
   res.render("contact", {title: "xxxxxWelcome to Contact"});
 });
 app.get("/posts", (req, res) => {
-  res.sendFile(filePath);
+  res.render("post")
+  // res.sendFile(filePath);
 });
 app.get("/posts/:id", (req, res) => {
   if (postsJson ){
     let postJson = postsJson.filter(post => post.postid == req.params.id)
-    res.render("post", { layout: "postlayout.handlebars", post: postJson[0] })
+    res.render("post", { layout: "main", post: postJson[0] })
   }
-  // res.send("not found")
- // res.sendFile(filePath);
 });
 app.use(express.static("public", { 'extensions': ['html'] }));
 // what does this line mean: process.env.PORT || 3000
