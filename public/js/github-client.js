@@ -1,9 +1,11 @@
+
 function loadRepos(userName) {
+    //in the next line  use XMLHttpRequest to issue HTTP requests  in order to exchange data between the web site and a server.
     function onLoad() {
         const reposInfo = JSON.parse(this.responseText);
-
+        // I think I should move this code below to cv handle bar
         let html = '<div class="row">';
-        reposInfo.forEach(function(repo) {
+        reposInfo.forEach((repo) => {
             const description = repo.description ? repo.description.substring(0, 50) : "No Description";
 
             html += `<div class="col-sm-6 col-md-4">
@@ -25,7 +27,7 @@ function loadRepos(userName) {
         const reposInfoElement = document.getElementById('reposInfo');
         reposInfoElement.innerHTML = html;
     }
-
+    // use XMLHttpRequest to issue HTTP requests  in order to exchange data between the web site and a server.
     var url = 'https://api.github.com/users/' + userName + '/repos';
 
     var oReq = new XMLHttpRequest();
@@ -35,6 +37,6 @@ function loadRepos(userName) {
 }
 
 var myButton = document.querySelector('#btnGetRepos');
-myButton.addEventListener('click', function() {
+myButton.addEventListener('click', () => {
     loadRepos('CodeYourFuture');
-});
+}); //this is a callback function for button
