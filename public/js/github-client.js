@@ -35,8 +35,10 @@ function loadRepos(userName) {
     oReq.send();
 }
 
-var myButton = document.querySelector('#btnGetRepos');
+var myButton = document.querySelector("#btnGetRepos");
 const myButtonCallback = () => {
         loadRepos('CodeYourFuture');
 }
-myButton.addEventListener('click', myButtonCallback);
+if (myButton) {
+    myButton.addEventListener("click", myButtonCallback);
+}
