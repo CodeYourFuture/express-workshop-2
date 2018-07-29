@@ -1,9 +1,15 @@
 const fs = require('fs')
 const express = require("express");
-
+const bodyParser = require("body-parser");
 // Add this to the top of your file
 const exphbs = require("express-handlebars");
 const app = express();
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 // Then these two lines after you initialise your express app
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -43,6 +49,16 @@ app.get("/posts/:id", (req, res) => {
     let postJson = postsJson.filter(post => post.postid == req.params.id)
     res.render("post", { post: postJson[0] })
   }
+});
+app.post("/post", urlencodedParser, (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  const allPosts = fs.readFileSync(filePath, 'utf8');
+  const jsAllPostsArray = JSON.parse(allPosts)
+  const newPost = { postid: jsAllPostsArray.length + 1, ...req.body };
+  jsAllPostsArray.push(newPost);
+  fs.writeFileSync(filePath, JSON.stringify(jsAllPostsArray));
+  // I am not able to redirect from here: any idea? 
+  res.send("<h1>your data has been saved successfully!</h1><a href='/'>Go back</a>")
 });
 app.use(express.static("public", { 'extensions': ['html'] }));
 // what does this line mean: process.env.PORT || 3000
