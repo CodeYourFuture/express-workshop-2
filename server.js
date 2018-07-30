@@ -17,14 +17,15 @@ app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname, "public"), { extensions: ["html"] }));
 const filePath = __dirname + "/data/posts.json";
 let postsJson;
+let authYes = false;
 const registeredAdmin = {
   username: 'rraju12@gmail.com',
   password: '654321'
 }
 const auth = (req = {}, res) => {
   const { username, password } = req.body
-  return registeredAdmin.username === username &&
-    registeredAdmin.password === password
+  authYes = registeredAdmin.username === username && registeredAdmin.password === password;
+  return authYes
 }
 app.get("/", (req, res) => {
   const callbackFunction = (error, file) => {
@@ -82,7 +83,12 @@ app.post("/post", urlencodedParser, (req, res) => {
   // res.send("<h1>your data has been saved successfully!</h1><a href='/'>Go back</a>")
 });
 app.get("/posts", (req, res) => {
-  res.sendFile(filePath);
+  if (authYes) {
+    res.sendFile(filePath);
+  } else{
+    return res.sendStatus(400);
+  }
+  
 });
 // what does this line mean: process.env.PORT || 3000
 app.listen(process.env.PORT || 3000, function () {
