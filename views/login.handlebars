@@ -1,0 +1,24 @@
+<div class="row">
+    <p>{{title}}</p>
+    <form name="loginForm" action="/login" method="POST">
+        <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>User name</label>
+                <input name="username" type="text" class="form-control" placeholder="Please enter user name." id="username" required data-validation-required-message="Please enter user name.">
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+            <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Password</label>
+                <input name="password" type="password" class="form-control" placeholder="Please enter your password." id="username" required data-validation-required-message="Please enter your password.">
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
